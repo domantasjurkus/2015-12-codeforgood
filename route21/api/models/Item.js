@@ -9,7 +9,24 @@ module.exports = {
 
   attributes: {
     category: {
+      type: 'string',
+      enum: [
+        'event',
+        'internship',
+        'job',
+        'advice',
+        'other',
+      ],
+    },
+    title: {
       type: 'string'
     },
+    description: {
+      type: 'string',
+    },
+    link: {
+      type: 'string',
+    },
+
   },
 };
