@@ -8,8 +8,11 @@
 module.exports = {
 
   attributes: {
+
     category: {
       type: 'string'
     },
+
   },
+
 };
