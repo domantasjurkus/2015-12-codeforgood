@@ -24,7 +24,6 @@
         width: 350px;
     }
 
-
     </style>
 
 </head>
@@ -62,6 +61,19 @@
 
         <div class="row">
             <div class="col-lg-12 text-left">
+                <div id="instructions-container">
+                    <h2>Import New Events</h2>
+                    <p id="instructions">
+                        To import new events/opportunities from an external website:<br>
+                        <ol>
+                            <li>Install the Kimono Chrome extension.</li>
+                            <li>Using Kimono, select the title, company, location and link from the opportunity list.</li>
+                            <li>Specify that you want to extract the href for the link and text values for all other fields.</li>
+                            <li>Generate an API for scraping the data.</li>
+                            <li>Paste the API URL and the type of opportunities in the form below.</li>
+                        </ol>
+                    </p>
+                </div>
                 <form class="Import" action="http://localhost:1337/item/insert" method="POST" autocomplete="off">
                   <h3><strong>API URL</strong></h3>
                   <input class="textfield" type="text" name="url" placeholder="eg. Put API URL here">
