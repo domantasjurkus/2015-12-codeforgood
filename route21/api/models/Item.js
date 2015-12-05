@@ -19,9 +19,18 @@ module.exports = {
         'other',
       ],
     },
+
     title: {
       type: 'string'
+    }, 
+
+    link: {
+      type: 'string',
     },
+
+    tag: {
+      type: 'array',
+    }
 
   },
 
