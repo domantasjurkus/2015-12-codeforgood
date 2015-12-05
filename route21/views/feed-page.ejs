@@ -21,6 +21,7 @@
 
 <body>
 
+
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -63,50 +64,33 @@
 					<input type="text" placeholder="Search for opportunities...">
                     <button type="button" class="btn btn-secondary">Search</button>
 				</div>
-				
+
             </div>
         </div>
         <!-- /.row -->
-        
+
     <!-- OPPORTUNITIES HERE -->
         <div id="opportunities">
             <div class="col-md-7">
         <!-- Project One -->
-                
+
             <div class="internships">
             	<h1><strong>Internships</strong></h1>
             	<hr>
-    		
+
+                <% for(var i=0; i<items.length; i++) { %>
+
                 <div class="row">
                     <div class="col-md-7">
-                    	<h3>e.g JPMorgan</h3>
+                    	<h3><%= items[i].title %></h3>
                         <h4>e.g. System Engineer</h4>
                         <p>So this internship seems really fun. Apply now.</p>
-                        <a class="btn btn-primary" href="#">Visit internship <span class="glyphicon glyphicon-chevron-right"></span></a>
+                        <p>#<%= items[i].category %></p>
+                        <a class="btn btn-primary" href="<%= items[i].link %>">Visit internship <span class="glyphicon glyphicon-chevron-right"></span></a>
                     </div>
                 </div>
-            <!-- /.row -->
-                <hr>
-            <!-- Project Two -->
-                <div class="row">
-                    <div class="col-md-7">
-                        <h3>e.g JPMorgan</h3>
-                        <h4>e.g. System Engineer</h4>
-                        <p>So this internship seems really fun. Apply now.</p>
-                        <a class="btn btn-primary" href="#">Visit internship <span class="glyphicon glyphicon-chevron-right"></span></a>
-                    </div>
-                </div>
-            <!-- /.row -->
-                <hr>
-            <!-- Project Three -->
-                <div class="row">
-                    <div class="col-md-7">
-                        <h3>e.g JPMorgan</h3>
-                        <h4>e.g. System Engineer</h4>
-                        <p>So this internship seems really fun. Apply now.</p>
-                        <a class="btn btn-primary" href="#">Visit internship <span class="glyphicon glyphicon-chevron-right"></span></a>
-                    </div>
-                </div>
+
+                <% } %>
                 <br><hr>
                 <a class="btn btn-secondary" href="#">More...<span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
@@ -118,7 +102,7 @@
             <div class="jobs">
                 <h1><strong>Jobs</strong></h1>
                 <hr>
-            
+
                 <div class="row">
                     <div class="col-md-7">
                         <h3>e.g JPMorgan</h3>
@@ -160,7 +144,7 @@
             <div class="events">
                 <h1><strong>Events</strong></h1>
                 <hr>
-            
+
                 <div class="row">
                     <div class="col-md-7">
                         <h3>e.g JPMorgan</h3>
@@ -198,7 +182,7 @@
         </div>
         </div>
         <!-- /.row -->
-        
+
     <!-- ADIVCE -->
         <div class="col">
             <div class="col-md-5">
@@ -219,8 +203,8 @@
                         <label><input type="checkbox" value="">Advice</label>
                     </div>
                     </div>
-                </div>         
-         
+                </div>
+
             </div>
          </div>
 

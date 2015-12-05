@@ -47,17 +47,17 @@
                     <br><span class="sub">We’ll use these selections to tailor your opportunities feed to you</span>
                   </label>
                 </p>
-                <form class="form" action="feed" method="get" id="form" autocomplete="off">
+                <form class="form" action="item" method="get" id="form" autocomplete="off">
                   <ul class="checkbox-grid">
-                    <li><input type="checkbox" name="ap[]" value="value1" /><label for="text1">Banking &#38; Finance</label></li>
-                    <li><input type="checkbox" name="ap[]" value="value2" /><label for="text2">Charity &#38; Public Sector</label></li>
-                    <li><input type="checkbox" name="ap[]" value="value3" /><label for="text3">Consulting</label></li>
-                    <li><input type="checkbox" name="ap[]" value="value4" /><label for="text4">Consumer &#38; Retail</label></li>
-                    <li><input type="checkbox" name="ap[]" value="value5" /><label for="text5">Entrepreneurship</label></li>
-                    <li><input type="checkbox" name="ap[]" value="value6" /><label for="text6">Law</label></li>
-                    <li><input type="checkbox" name="ap[]" value="value7" /><label for="text7">Technology</label></li>
-                    <li><input type="checkbox" name="ap[]" value="value8" /><label for="text8">Professional Services</label></li>
-                    <li><input type="checkbox" name="ap[]" value="value9" /><label for="text9">Marketing &#38; Media</label></li>
+                    <li><input type="checkbox" name="ap[]" value="banking-finance" /><label for="text1">Banking &#38; Finance</label></li>
+                    <li><input type="checkbox" name="ap[]" value="charity-public-sector" /><label for="text2">Charity &#38; Public Sector</label></li>
+                    <li><input type="checkbox" name="ap[]" value="consulting" /><label for="text3">Consulting</label></li>
+                    <li><input type="checkbox" name="ap[]" value="consumer-retail" /><label for="text4">Consumer &#38; Retail</label></li>
+                    <li><input type="checkbox" name="ap[]" value="entrepreneurship" /><label for="text5">Entrepreneurship</label></li>
+                    <li><input type="checkbox" name="ap[]" value="law" /><label for="text6">Law</label></li>
+                    <li><input type="checkbox" name="ap[]" value="technology" /><label for="text7">Technology</label></li>
+                    <li><input type="checkbox" name="ap[]" value="professional-services" /><label for="text8">Professional Services</label></li>
+                    <li><input type="checkbox" name="ap[]" value="marketing-media" /><label for="text9">Marketing &#38; Media</label></li>
                   </ul>
                   <br></br>
                   <input class="submitButton" type="submit" name="Submit button" value="Submit">
@@ -66,7 +66,7 @@
         </div>
     </header>
 
-    <form class="form" action="/feed" method="get" id="hiddenform" autocomplete="off">
+    <form class="form" action="/item" method="get" id="hiddenform" autocomplete="off">
       <input type="hidden" name="skills" id="skills" value="">
     </form>
 
@@ -92,7 +92,7 @@
 
       var list = $(':checkbox[name="ap[]"]:checked').map(function(){
         return $(this).val();
-      }).get().join(',');
+      }).get().join('-');
 
       $('input#skills').val(list);
       $('form#hiddenform').submit();

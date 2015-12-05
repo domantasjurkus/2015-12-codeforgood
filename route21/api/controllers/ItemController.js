@@ -65,13 +65,13 @@ module.exports = {
 
     var paramSkills = req.param('skills');
     var skillsFilter = paramSkills ? paramSkills : "";
-    skillsFilter = skillsFilter.split(',');
+    skillsFilter = skillsFilter.split('-');
     skills = skillsFilter.map(function(skill) {
       return {tags: { contains: [skill]}}
     });
 
     var filter = req.param('filter') ? req.param('filter') : '';
-    filterByCategories = filter.split(',').map(function(filter) {
+    filterByCategories = filter.split('-').map(function(filter) {
       return {category: filter};
     });
 
@@ -88,7 +88,7 @@ module.exports = {
     .where(q)
     .paginate({page: req.param('page'), limit: req.param('limit')})
     .then(function(items) {
-    	res.send(items);
+    	res.view('feed-page', {items});
     });
 	},
 
