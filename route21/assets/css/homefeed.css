@@ -34,8 +34,8 @@ footer {
 }
 
 nav.navbar.navbar-inverse.navbar-fixed-top {
-    background-color: #C70039 !important;
-    color: red !important;
+    background-color: #000 !important;
+    color: #FFF !important;
 }
 
 .filter {
@@ -49,4 +49,25 @@ nav.navbar.navbar-inverse.navbar-fixed-top {
 
 .navbar-header {
     float: right;
+}
+
+input.form-control {
+    display: inline-block;
+}
+
+button.btn.btn-secondary {
+    background-color: #6FB6FF;
+}
+
+a.btn.btn-primary {
+    background: #6FB6FF;
+    border: 0;
+}
+
+p.hashtag {
+    background: black;
+    color: #FFF;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 5px;
 }

@@ -91,13 +91,13 @@
                 <% for(var i=0; i<items.length; i++) { %>
 
                 <div class="row">
-                    <div class="col-md-7">
+                    <div style="width: 100% !important;" class="col-md-7">
                     	<h3><%= items[i].title %></h3>
                         <h4><%= items[i].location %></h4>
                         <h4><%= items[i].company %></h4>
-                        <p class="hashtag" id="<%= items[i].category %>">#<%= items[i].category %></p>
+                        <p class="hashtag" id="<%= items[i].category %>">#<%= items[i].category %></p><br>
                         <a class="btn btn-primary" href="<%= items[i].link %>">Go to <%= items[i].category %> <span class="glyphicon glyphicon-chevron-right"></span></a>
-
+                        <hr />
                     </div>
                 </div>
 

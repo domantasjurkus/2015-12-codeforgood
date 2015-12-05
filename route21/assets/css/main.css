@@ -209,3 +209,7 @@ footer {
 .header a {
     margin-top: 200px;
 }
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    background: #000 !important;
+}
