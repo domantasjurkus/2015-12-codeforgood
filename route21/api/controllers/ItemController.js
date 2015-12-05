@@ -33,7 +33,7 @@ module.exports = {
           var title   = oppor.title;
           var link    = oppor.link;
           var company = oppor.company;
-          var location= oppor.location;
+          var location= oppor.location || '-';
           var tags    = oppor.title.toLowerCase().replace(/[\[\](){}?*+\^$\\.,&|\-]/g, '').replace('  ', ' ').split(" ");
 
           // Create a new Item instance
@@ -99,12 +99,18 @@ module.exports = {
     .then(function(items) {
       console.log('found items: ', items.length, req.param('search'));
       if (items.length || req.param('search')) {
-        return res.view('feed-page', {items});
+        return items;
       }
       return Item.find()
-      .paginate({page: req.param('page'), limit: req.param('limit')})
-      .then(function(items) {
-        return res.view('feed-page', {items});
+      .paginate({page: req.param('page'), limit: req.param('limit')});
+    })
+    .then(function(items) {
+      return res.view('feed-page', {items,
+        search: req.param('search'),
+        skills: req.param('skills'),
+        limit: req.param('limit'),
+        page: req.param('page'),
+        filter: req.param('filter'),
       });
     });
 
