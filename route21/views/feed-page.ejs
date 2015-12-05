@@ -108,22 +108,27 @@
         <div class="col">
             <div class="col-md-5">
                 <div class="filter">
+                  <form id="categoryform" action="/item" method="get">
                     <div class="col-md-12">
-                    <h3>Categories</h3>
-                    <hr>
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="">Internships</label>
+                      <h3>Categories</h3>
+                      <hr>
+                      <div class="checkbox">
+                          <label><input type="checkbox" name="ap[]" value="jobs" id="jobs">Jobs</label>
+                      </div>
+                      <div class="checkbox">
+                          <label><input type="checkbox" name="ap[]" value="internship" id="internship">Internships</label>
+                      </div>
+                      <div class="checkbox">
+                          <label><input type="checkbox" name="ap[]" value="event" id="event">Events</label>
+                      </div>
+                      <div class="checkbox">
+                          <label><input type="checkbox" name="ap[]" value="apprenticeship" id="apprenticeship">Apprenticeship</label>
+                      </div>
+                      <div class="checkbox">
+                          <label><input type="checkbox" name="ap[]" value="advice" id="advice">Advice</label>
+                      </div>
                     </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="">Events</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="">Job opportunities</label>
-                    </div>
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="">Advice</label>
-                    </div>
-                    </div>
+                  </form>
                 </div>
 
             </div>
@@ -182,6 +187,33 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+    <form class="form" action="/item" method="get" id="hiddenform" autocomplete="off">
+      <input type="hidden" name="filter" id="category" value="">
+    </form>
+
+    <script type="text/javascript">
+    var filterArray = '<%= filter %>'.split('-');
+    console.log(filterArray);
+
+    filterArray.forEach(function(filter) {
+      $('input#'+filter).prop('checked', true);
+    });
+
+
+    $(':checkbox').change(function() {
+      console.log('hi');
+
+      var list = $(':checkbox[name="ap[]"]:checked').map(function(){
+        return $(this).val();
+      }).get().join('-');
+
+      console.log(list);
+
+      $('input#category').val(list);
+      $('form#hiddenform').submit();
+
+    });
+    </script>
 </body>
 
 </html>
