@@ -63,9 +63,17 @@ module.exports = {
 
 	find: function(req, res) {
 
-    var paramSkills = req.param('skills');
-    var skillsFilter = paramSkills ? paramSkills : "";
-    skillsFilter = skillsFilter.split('-');
+    var skillsFilter;
+    if (req.param('search')) {
+      skillsFilter = req.param('search').split(' ');
+    } else {
+      var paramSkills = req.param('skills');
+      skillsFilter = paramSkills ? paramSkills : "";
+      skillsFilter = skillsFilter.split('-');
+    }
+
+    console.log('skills:', skillsFilter);
+
     skills = skillsFilter.map(function(skill) {
       return {tags: { contains: [skill]}}
     });
@@ -76,9 +84,9 @@ module.exports = {
     });
 
     var q = {};
-    if (req.param('filter'))
-      q.or = filterByCategories;
-    if (req.param('skills')) {
+    // if (req.param('filter'))
+    //   q.or = filterByCategories;
+    if (req.param('skills') || req.param('search')) {
       q.where = {or: skills};
     }
 
@@ -87,9 +95,19 @@ module.exports = {
     Item.find()
     .where(q)
     .paginate({page: req.param('page'), limit: req.param('limit')})
+    .sort('title ASC')
     .then(function(items) {
-    	res.view('feed-page', {items});
+      console.log('found items: ', items.length, req.param('search'));
+      if (items.length || req.param('search')) {
+        return res.view('feed-page', {items});
+      }
+      return Item.find()
+      .paginate({page: req.param('page'), limit: req.param('limit')})
+      .then(function(items) {
+        return res.view('feed-page', {items});
+      });
     });
+
 	},
 
 
