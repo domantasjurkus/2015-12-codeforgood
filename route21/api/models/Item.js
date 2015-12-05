@@ -35,6 +35,10 @@ module.exports = {
       unique: true
     },
 
+    location: {
+      type: 'string'
+    },
+
     tags: {
       type: 'array',
     }

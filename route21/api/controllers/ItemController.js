@@ -29,32 +29,30 @@ module.exports = {
 
         // Loop through each opportunity
         opp.forEach(function(oppor) {
+          console.log("Entry");
           var title   = oppor.title;
           var link    = oppor.link;
           var company = oppor.company;
+          var location= oppor.location;
           var tags    = oppor.title.toLowerCase().replace(/[\[\](){}?*+\^$\\.,&|\-]/g, '').replace('  ', ' ').split(" ");
 
+          // Create a new Item instance
+          Item.findOrCreate({
+            title: title,
+            category: type,
+            link: link,
+            company: company,
+            location: location,
+            tags: tags
 
-          // If the opportunity is of requested type
-          if (_.contains(tags, type)){
-
-            // Create a new Item instance
-            Item.findOrCreate({
-              title: title,
-              category: type,
-              link: link,
-              company: company,
-              tags: tags
-
-            // Persist the Item to the DB
-            }).exec(function(err, item) {
-              if (err) {
-                console.log(err);
-              }
-              console.log("---Create a "+type+" item.---");
-              console.log(title+"\n"+link+"\n"+tags+"\n");
-            });
-          }
+          // Persist the Item to the DB
+          }).exec(function(err, item) {
+            if (err) {
+              console.log(err);
+            }
+            console.log("---Create a "+type+" item.---");
+            console.log(title+"\n"+link+"\n"+tags+"\n");
+          });
 
         });
 

@@ -11,6 +11,9 @@ module.exports = {
 
   facebook: function (req, res, next) {
 
+    console.log("Test");
+    
+
     passport.authenticate('facebook', { scope: ['email', 'public_profile']},
        function (err, user) {
            req.logIn(user, function (err) {
