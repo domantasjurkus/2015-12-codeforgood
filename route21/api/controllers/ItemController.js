@@ -33,7 +33,7 @@ module.exports = {
           var title   = oppor.title;
           var link    = oppor.link;
           var company = oppor.company;
-          var location= oppor.location;
+          var location= oppor.location || '-';
           var tags    = oppor.title.toLowerCase().replace(/[\[\](){}?*+\^$\\.,&|\-]/g, '').replace('  ', ' ').split(" ");
 
           // Create a new Item instance
