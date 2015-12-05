@@ -5,42 +5,29 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 var http = require('http');
+var request = require('request');
 
 module.exports = {
 
+  // Insert new data through a provided API URL
   insert: function(req, res) {
     var url = req.param('url');
-    res.send(url);
 
-    var options = {
-      host : url,
-      port : 80,
-      path : "/",
-      method : 'GET'
-    };
+    // Request to the API
+    console.log("Making request");
+    request(url, function(error, response, json) {
+      // If request succeeded
+      if (!error && response.statusCode == 200) {
 
-    var data = "";
+        var opp = JSON.parse(json).results.collection1;
 
-    var req = http.request(options, function(res){
-      res.on('data', function(chunk){
-        console.log("We got some data");
-      });
-
-      res.on('end', function(){
-        console.log("Request ended");
-        res.send(data);
-      });
-
-      res.on('error', function(e){
-        console.log(e.message);
-      });
-
+        return res.send(opp)
+      }
     });
-
   },
 
 	find: function(req, res) {
-		res.send('Hello World');
+		res.send('Found something');
 	}
 
 };
