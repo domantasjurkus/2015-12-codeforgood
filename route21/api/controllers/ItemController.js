@@ -63,9 +63,17 @@ module.exports = {
 
 	find: function(req, res) {
 
-    var paramSkills = req.param('skills');
-    var skillsFilter = paramSkills ? paramSkills : "";
-    skillsFilter = skillsFilter.split('-');
+    var skillsFilter;
+    if (req.param('search')) {
+      skillsFilter = req.param('search').split(' ');
+    } else {
+      var paramSkills = req.param('skills');
+      skillsFilter = paramSkills ? paramSkills : "";
+      skillsFilter = skillsFilter.split('-');
+    }
+
+    console.log('skills:', skillsFilter);
+
     skills = skillsFilter.map(function(skill) {
       return {tags: { contains: [skill]}}
     });
@@ -88,8 +96,16 @@ module.exports = {
     .where(q)
     .paginate({page: req.param('page'), limit: req.param('limit')})
     .then(function(items) {
-    	res.view('feed-page', {items});
+      if (items.length) {
+        return res.view('feed-page', {items});
+      }
+      return Item.find()
+      .paginate({page: req.param('page'), limit: req.param('limit')})
+      .then(function(items) {
+        return res.view('feed-page', {items});
+      });
     });
+
 	},
 
 
