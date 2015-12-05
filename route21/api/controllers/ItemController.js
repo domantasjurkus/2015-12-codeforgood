@@ -97,6 +97,7 @@ module.exports = {
     .paginate({page: req.param('page'), limit: req.param('limit')})
     .sort('title ASC')
     .then(function(items) {
+
       console.log('found items: ', items.length, req.param('search'));
       if (items.length || req.param('search')) {
         return items;
@@ -105,6 +106,13 @@ module.exports = {
       .paginate({page: req.param('page'), limit: req.param('limit')});
     })
     .then(function(items) {
+
+      if (req.param('filter')) { 
+        items = items.filter(function(item) {
+          return req.param('filter').split('-').indexOf(item.category) > -1;
+        });
+      }
+
       return res.view('feed-page', {items,
         search: req.param('search'),
         skills: req.param('skills'),
