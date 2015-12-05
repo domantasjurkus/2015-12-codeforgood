@@ -107,19 +107,21 @@ module.exports = {
     })
     .then(function(items) {
 
-      if (req.param('filter')) { 
+      if (req.param('filter')) {
         items = items.filter(function(item) {
           return req.param('filter').split('-').indexOf(item.category) > -1;
         });
       }
 
-      return res.view('feed-page', {items,
-        search: req.param('search'),
-        skills: req.param('skills'),
-        limit: req.param('limit'),
-        page: req.param('page'),
-        filter: req.param('filter'),
-      });
+      var responseObj = {};
+      responseObj.items = items;
+      responseObj.search = req.param('search') ? req.param('search') : '';
+      responseObj.skills = req.param('skills') ? req.param('skills') : '';
+      responseObj.limit = req.param('limit') ? req.param('limit') : '';
+      responseObj.page = req.param('page') ? req.param('page') : '';
+      responseObj.filter = req.param('filter') ? req.param('filter') : '';
+
+      return res.view('feed-page', responseObj);
     });
 
 	},

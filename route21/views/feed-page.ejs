@@ -68,6 +68,10 @@
                 <form class="" action="/item" method="get">
           					<input type="text" name="search" placeholder="Search for opportunities...">
 
+                    <input type="hidden" name="filter" value="<%= filter %>">
+                    <input type="hidden" name="skills" value="<%= skills %>">
+                    <input type="hidden" name="limit" value="<%= limit %>">
+                    <input type="hidden" name="page" value="<%= page %>">
                     <button type="submit" class="btn btn-secondary">Search</button>
                 </form>
 				</div>
@@ -114,6 +118,9 @@
                     <div class="col-md-12">
                       <h3>Categories</h3>
                       <hr>
+                      <div class="checkbox">
+                          <label><input type="checkbox" name="ap[]" value="advice" id="advice">Advice</label>
+                      </div>
                       <div class="checkbox">
                           <label><input type="checkbox" name="ap[]" value="internship" id="internship">Internships</label>
                       </div>
@@ -166,7 +173,7 @@
 
         <!-- Footer -->
         <footer>
-            
+
     <div class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="container">
             <div class="navbar-header">
@@ -177,7 +184,7 @@
                 <span class='st_pinterest_large' displayText='Pinterest'></span>
                 <span class='st_email_large' displayText='Email'></span>
             </div>
-            </div>    
+            </div>
         </div>
     </div>
 
@@ -194,6 +201,10 @@
 
     <form class="form" action="/item" method="get" id="hiddenform" autocomplete="off">
       <input type="hidden" name="filter" id="category" value="">
+      <input type="hidden" name="search" value="<%= search %>">
+      <input type="hidden" name="skills" value="<%= skills %>">
+      <input type="hidden" name="limit" value="<%= limit %>">
+      <input type="hidden" name="page" value="<%= page %>">
     </form>
 
     <script type="text/javascript">
