@@ -12,17 +12,11 @@ module.exports = {
 
   // Insert new data through a provided API URL
   insert: function(req, res) {
-    var url = req.param('url');
-    // Type of the events we want to scarpe
-    var type = req.param('type');
 
-    var eventType = [
-      'event',
-      'internship',
-      'job',
-      'advice',
-      'other',
-    ]
+    // The URL of the API
+    var url = req.param('url');
+    // Type of the event we want to scarpe
+    var type = req.param('type');
 
     // Request to the API
     console.log("Making request");
@@ -33,31 +27,38 @@ module.exports = {
 
         var opp = JSON.parse(json).results.collection1;
 
-        // collection1 is an array of objects
-        var keyname
-
         // Loop through each opportunity
         opp.forEach(function(oppor) {
-          var title = oppor.title.text;
-          var link = oppor.title.href;
-          var tags = oppor.title.text.toLowerCase().replace(/[\[\](){}?*+\^$\\.,&|\-]/g, "").split(" ");
+          var title   = oppor.title;
+          var link    = oppor.link;
+          var company = oppor.company;
+          var tags    = oppor.title.toLowerCase().replace(/[\[\](){}?*+\^$\\.,&|\-]/g, '').replace('  ', ' ').split(" ");
+
 
           // If the opportunity is of requested type
           if (_.contains(tags, type)){
-            Item.create({
-              category: type,
+
+            // Create a new Item instance
+            Item.findOrCreate({
               title: title,
+              category: type,
               link: link,
+              company: company,
               tags: tags
-            }).exec(function() {
+
+            // Persist the Item to the DB
+            }).exec(function(err, item) {
+              if (err) {
+                console.log(err);
+              }
               console.log("---Create a "+type+" item.---");
-              console.log(title+"\n"+link+"\n"+tags+"\n\n");
+              console.log(title+"\n"+link+"\n"+tags+"\n");
             });
           }
 
         });
 
-        return res.send(opp)
+        return res.send("Request finished")
       }
     });
   },

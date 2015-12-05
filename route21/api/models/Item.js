@@ -9,23 +9,30 @@ module.exports = {
 
   attributes: {
 
+    title: {
+      type: 'string'
+    },
+
     category: {
       type: 'string',
       enum: [
+        'apprenticeship',
         'event',
         'internship',
+        'intern',
         'job',
         'advice',
         'other',
       ],
     },
 
-    title: {
+    company: {
       type: 'string'
-    }, 
+    },
 
     link: {
       type: 'string',
+      unique: true
     },
 
     tags: {
