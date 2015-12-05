@@ -33,7 +33,15 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'homepage'
+    view: 'index'
+  },
+
+  '/selection': {
+    view: 'selection-page'
+  },
+
+  '/feed': {
+    view: 'feed-page'
   },
 
   '/import': {
