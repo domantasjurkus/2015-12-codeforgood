@@ -1,4 +1,4 @@
-
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 html,
 body {
@@ -204,4 +204,8 @@ hr.small {
 
 footer {
     padding: 100px 0;
+}
+
+.header a {
+    margin-top: 200px;
 }
