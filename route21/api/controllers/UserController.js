@@ -16,15 +16,17 @@ module.exports = {
 
     passport.authenticate('facebook', { scope: ['email', 'public_profile']},
        function (err, user) {
-           req.logIn(user, function (err) {
-           if(err) {
-               req.session.flash = 'There was an error';
-               req.redirect('user/login');
-           } else {
-               req.session.user = user;
-               req.redirect('/user/dashboard');
-           }
-       });
+         console.log(err, user);
+
+          //  req.logIn(user, function (err) {
+          //  if(err) {
+          //      req.session.flash = 'There was an error';
+          //      req.redirect('user/login');
+          //  } else {
+          //      req.session.user = user;
+          //      req.redirect('/user/dashboard');
+          //  }
+          //  });
    })(req, res, next);
   },
 

@@ -21,7 +21,7 @@ module.exports = {
     // Request to the API
     console.log("Making request");
     request(url, function(error, response, json) {
-      
+
       // If request is successful
       if (!error && response.statusCode == 200) {
 
@@ -62,7 +62,36 @@ module.exports = {
   },
 
 	find: function(req, res) {
-		res.send('Found something');
-	}
+
+    var paramSkills = req.param('skills');
+    var skillsFilter = paramSkills ? paramSkills : "";
+    skillsFilter = skillsFilter.split(',');
+    skills = skillsFilter.map(function(skill) {
+      return {tags: { contains: [skill]}}
+    });
+
+    var filter = req.param('filter') ? req.param('filter') : '';
+    filterByCategories = filter.split(',').map(function(filter) {
+      return {category: filter};
+    });
+
+    var q = {};
+    if (req.param('filter'))
+      q.or = filterByCategories;
+    if (req.param('skills')) {
+      q.where = {or: skills};
+    }
+
+    console.log(q);
+
+    Item.find()
+    .where(q)
+    .paginate({page: req.param('page'), limit: req.param('limit')})
+    .then(function(items) {
+    	res.send(items);
+    });
+	},
+
+
 
 };
