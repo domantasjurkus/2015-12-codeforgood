@@ -1,0 +1,48 @@
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+footer {
+    margin: 50px 0;
+}
+
+
+#search {
+    float: left;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+#search input {
+    font-size: 0.9em;
+    height: 35px;
+    width: 400px;
+    padding: 0 0 0 8px;
+    background-image: url(images/magnifying_glass.png);
+    background-repeat: no-repeat; /* prevents image to display multiple times */
+    background-size: 30px;
+    background-position: right center; /* alligns it to the right and centers it */
+}
+
+.page-header {
+    float: right;
+    margin: 0px;
+    padding: 8px;
+}
+
+nav.navbar.navbar-inverse.navbar-fixed-top {
+    background-color: #C70039 !important;
+    color: red !important;
+}
+
+.filter {
+    float: right;
+    width: 300px;
+}
+
+#opportunities {
+    border-right: 1px solid black;
+}
+
+
