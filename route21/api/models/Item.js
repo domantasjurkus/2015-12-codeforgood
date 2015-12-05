@@ -28,7 +28,7 @@ module.exports = {
       type: 'string',
     },
 
-    tag: {
+    tags: {
       type: 'array',
     }
 
