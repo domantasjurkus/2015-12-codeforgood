@@ -84,9 +84,9 @@ module.exports = {
     });
 
     var q = {};
-    if (req.param('filter'))
-      q.or = filterByCategories;
-    if (req.param('skills')) {
+    // if (req.param('filter'))
+    //   q.or = filterByCategories;
+    if (req.param('skills') || req.param('search')) {
       q.where = {or: skills};
     }
 
@@ -95,8 +95,10 @@ module.exports = {
     Item.find()
     .where(q)
     .paginate({page: req.param('page'), limit: req.param('limit')})
+    .sort('title ASC')
     .then(function(items) {
-      if (items.length) {
+      console.log('found items: ', items.length, req.param('search'));
+      if (items.length || req.param('search')) {
         return res.view('feed-page', {items});
       }
       return Item.find()
